@@ -4,6 +4,8 @@ import Input from 'react-toolbox/lib/input';
 import PouchDB from 'pouchdb-browser' ;
 import DatePicker from 'react-toolbox/lib/date_picker';
 import {Button} from 'react-toolbox/lib/button';
+
+import {IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
 import Dropdown from 'react-toolbox/lib/dropdown';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 var db = new PouchDB('dbname');
@@ -91,10 +93,11 @@ handleclass = (value) => {
 
 
     return (
-      <div style={{ flex: 1, overflowX: 'auto', margin: '5% 10% 10% 20%' }}>
-
-        <Card>
-
+      <div style={{ flex: 1, overflowX: 'auto', padding: '5% 10% 10% 20%' }}>
+      <h2> Attendance </h2>
+          <MenuDivider />
+        
+          
       <DatePicker icon='event'
           label='Date'
           onChange={this.handleChange.bind(this, 'date1')}
@@ -129,9 +132,12 @@ handleclass = (value) => {
         ))}
         
       </Table>
+      <Card>
       <Button  icon='done' label='Mark Present' onClick={this.mark} accent raised/>
+
       </Card>
       </div>
+      
     );
   }
 }

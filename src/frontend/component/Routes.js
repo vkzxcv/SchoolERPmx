@@ -9,6 +9,7 @@ import Studentedit from './Studentedit';
 import attendance from './attendance';
 import feeasssign from './feeassign';
 import Feepay from './feepay';
+import addsub from './addsubject';
 import Login from './login';
 const routes = (
   <Router history={hashHistory}>
@@ -21,6 +22,7 @@ const routes = (
     <Route path='/fee/assign' component={feeasssign} />
     <Route path='/fee/pay' component={Feepay} />
     <Route path='/login' component={Login} />
+    <Route path='/addsubject' component={addsub} />
   </Route>
 </Router>
 )
