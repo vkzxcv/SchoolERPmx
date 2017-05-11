@@ -7,6 +7,9 @@ import Table from './Table';
 import Student from './student.js';
 import Studentedit from './Studentedit';
 import attendance from './attendance';
+import feeasssign from './feeassign';
+import Feepay from './feepay';
+import Login from './login';
 const routes = (
   <Router history={hashHistory}>
     <Route path='/' component={App}>
@@ -15,6 +18,9 @@ const routes = (
     <Route path='/Student' component={Student} />
     <Route path='/Student/edit' component={Studentedit} />
     <Route path='/attendance' component={attendance} />
+    <Route path='/fee/assign' component={feeasssign} />
+    <Route path='/fee/pay' component={Feepay} />
+    <Route path='/login' component={Login} />
   </Route>
 </Router>
 )

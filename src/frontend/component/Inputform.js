@@ -52,7 +52,7 @@ handlegender = (value) => {
   ];
   address = {line1: '', line2:'', City:'',Pincode:'', State:''};
   handleclass = (value) => {
-    this.setState({gendervalue: value});
+    this.setState({classvalue: value});
   };
 Class = [
     { value: 'I', label: '1st' },
