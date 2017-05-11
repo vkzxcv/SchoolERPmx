@@ -8,14 +8,14 @@ import {IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
 import Dropdown from 'react-toolbox/lib/dropdown';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-class addsub extends Component {
+class addexam extends Component {
 
 
    constructor(props) {
           super(props);
           
             this.state = {
-                 classvalue:'',sectionvalue:'',Faculty:''
+                 classvalue:'',sectionvalue:''
                 };
                 this.baseState = this.state ;
             }
@@ -35,20 +35,12 @@ Class = [
     { value: '3', label: 'Semi-Annual' },
     { value: '4', label: 'Annual' }
   ];
-   faculty = [
-    { value: 'fac1', label: 'Ramesh' },
-    { value: 'fac2', label: 'Suresh'},
-    { value: 'fac3', label: 'Mahesh' },
-    { value: 'fac4', label: 'Fucker' }
-  ];
   handleChange = (name, value) => {
     this.setState({...this.state, [name]: value});
   };
   
 
-  handlefaculty = (value) => {
-    this.setState({faculty: value});
-  };
+  
 handleclass = (value) => {
     this.setState({classvalue: value});
   };
@@ -64,7 +56,7 @@ handleclass = (value) => {
 
     return (
       <div style={{ flex: 1, overflowX: 'auto', padding: '5% 10% 10% 20%' }}>
-          <h2> Add Subject </h2>
+          <h2> Add Exam </h2>
           <MenuDivider />
          <Dropdown icon='class'
           source={this.Class} // to be pulled from class database ( no. of classes of that school)
@@ -76,19 +68,20 @@ handleclass = (value) => {
           onChange={this.handlesection}
           value={this.state.sectionvalue} label='Section' required
         />
-        <Dropdown icon='face'
-          source={this.faculty} // to be pulled from class database ( no. of classes of that school)
-          onChange={this.handlefaculty}
-          value={this.state.Faculty} label='Faculty' required
+        <Dropdown icon='subject'
+          source={this.section} // to be pulled from class database ( no. of classes of that school)
+          onChange={this.handlesection}
+          value={this.state.sectionvalue} label='Subject' required
         />
-         <Input type='no' label='Subject Name' name='subject' icon='subject' value={this.state.sub_name} onChange={this.handleChange.bind(this, 'sub_name')} />
+         <Input type='no' label='Exam Name' name='Exam' icon='assessment' value={this.state.sub_name} onChange={this.handleChange.bind(this, 'sub_name')} />
+         <Input type='no' label='Weightage %' name='E' icon='view_column' value={this.state.sub_name} onChange={this.handleChange.bind(this, 'sub_name')} />
        
         <Card>
-      <Button  icon='done' label='Add Subject' onClick={this.submit} accent raised/>
+      <Button  icon='done' label='Add Exam' onClick={this.submit} accent raised/>
       </Card>
       </div>
     );
   }
 }
 
-export default addsub;
+export default addexam;

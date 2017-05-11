@@ -11,6 +11,7 @@ import feeasssign from './feeassign';
 import Feepay from './feepay';
 import addsub from './addsubject';
 import Login from './login';
+import addexam from './addexam';
 const routes = (
   <Router history={hashHistory}>
     <Route path='/' component={App}>
@@ -23,6 +24,7 @@ const routes = (
     <Route path='/fee/pay' component={Feepay} />
     <Route path='/login' component={Login} />
     <Route path='/addsubject' component={addsub} />
+    <Route path='/addexam' component={addexam} />
   </Route>
 </Router>
 )
