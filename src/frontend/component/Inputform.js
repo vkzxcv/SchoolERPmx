@@ -9,15 +9,21 @@ import PouchDB from 'pouchdb-browser' ;
 import DatePicker from 'react-toolbox/lib/date_picker';
 import Dropdown from 'react-toolbox/lib/dropdown';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-var db = new PouchDB('dbname');
+import Dialog from '../store/dialog';
+var student_database_one= new PouchDB('student_database_one');
+var student_id_database=new PouchDB('student_id_database');
+
 
 class Inputform extends React.Component {
         constructor(props) {
           super(props);
-          
+
             this.state = {
-                  _id: '' ,  name: '', phone: '', email: '', gendervalue:'Male', date1: '', classvalue:'I', nationality:'Indian', 
+                  _id: '' ,  name: '', phone: '', email: '', gendervalue:'Male', date1: '', classvalue:'I', nationality:'Indian',
                   address_line1: '', address_line2: '', address_City: '', address_Pincode: '', address_State: 'Rajasthan'
+                  ,father_age:'',father_name:'',father_qual:'',father_email:'',father_office:'',father_mobile:'',father_occupation:'',
+                  father_office_phone:'',Mother_age:'',Mother_name:'',Mother_qual:'',Mother_email:'',Mother_office:'',Mother_office_phone:'',Mother_mobile:'',
+                  Mother_occupation:''
                 };
                 this.baseState = this.state ;
             }
@@ -25,15 +31,24 @@ class Inputform extends React.Component {
     this.setState({index});
   };
 
-  
+
   handleClick = () => {
     console.log(this.state);
-    this.setState(this.baseState);
-    this.state._id = new Date().toISOString();
-    if(this.state.name === ''){console.log('EMptyinput');}
+    //this.state._id = new Date().toISOString();
+    if(this.state.name === '' || this.state._id===''){
+      return (
+        alert('Enter the id or the name')
+      );
+    }
     else {
-    db.put(this.state);
-}
+    student_id_database.put({_id:this.state._id}).then(function (response) {
+            console.log(response);
+          }).catch(function (err) {
+            alert('Two entries with same ids');
+          });
+      student_database_one.put(this.state);
+    this.setState(this.baseState);
+    }
   };
 
   resetForm = () => {
@@ -52,7 +67,7 @@ handlegender = (value) => {
   ];
   address = {line1: '', line2:'', City:'',Pincode:'', State:''};
   handleclass = (value) => {
-    this.setState({classvalue: value});
+    this.setState({gendervalue: value});
   };
 Class = [
     { value: 'I', label: '1st' },
@@ -70,7 +85,7 @@ Class = [
   };
   render () {
     return (<div style={{ flex: 1, overflowX: 'auto', margin: '5% 10% 10% 20%' }}>
-      
+
       <section>
         <h2>Personal</h2>
         <MenuDivider />
@@ -93,7 +108,7 @@ Class = [
         />
         <Input type='email' label='Email address' icon='email' value={this.state.email} onChange={this.handleChange.bind(this, 'email')} />
         <Input type='tel' label='Phone' name='phone' icon='phone' value={this.state.phone} onChange={this.handleChange.bind(this, 'phone')} />
-        <Input type='text' label='enroll' name='Enrollment id' icon='note_add' value={this.state.enroll} onChange={this.handleChange.bind(this, 'enroll')} />
+        <Input type='text' label='enroll' name='Enrollment id' icon='note_add' value={this.state._id} onChange={this.handleChange.bind(this, '_id')} />
         <Input type='text' label='Last School Attended' name='last-school' icon='school' value={this.state.lastschool} onChange={this.handleChange.bind(this, 'lastschool')} />
         <Input type='text' label='Nationality' name='nationality' icon='flag' value={this.state.nationality} onChange={this.handleChange.bind(this, 'nationality')} />
         <Input type='text' label='Religion' name='Religion' icon='people' value={this.state.religion} onChange={this.handleChange.bind(this, 'religion')} />
@@ -117,7 +132,7 @@ Class = [
         <Input type='text' value={this.state.address_City} label='City' required onChange={this.handleChange.bind(this, 'address_City')}  />
         <Input type='text' value={this.state.address_State} label='State' required onChange={this.handleChange.bind(this, 'address_State')}  />
         <h2> Father </h2>
-        
+
         <Input type='text' value={this.state.father_name} label='Name' required onChange={this.handleChange.bind(this, 'father_name')}  />
         <Input type='text' value={this.state.father_age} label='Age' required onChange={this.handleChange.bind(this, 'father_age')}  />
         <Input type='text' value={this.state.father_qual} label='Academic Qualification' required onChange={this.handleChange.bind(this, 'father_qual')}  />
@@ -127,7 +142,7 @@ Class = [
         <Input type='text' value={this.state.father_mobile} label='Mobile' required onChange={this.handleChange.bind(this, 'father_mobile')}  />
         <Input type='text' value={this.state.father_email} label='E-mail' required onChange={this.handleChange.bind(this, 'father_email')}  />
         <h2> Mother </h2>
-        
+
         <Input type='text' value={this.state.Mother_name} label='Name' required onChange={this.handleChange.bind(this, 'Mother_name')}  />
         <Input type='text' value={this.state.Mother_age} label='Age' required onChange={this.handleChange.bind(this, 'Mother_age')}  />
         <Input type='text' value={this.state.Mother_qual} label='Academic Qualification' required onChange={this.handleChange.bind(this, 'Mother_qual')}  />

@@ -8,7 +8,8 @@ import RtButton from './button';
 import {Link} from 'react-toolbox/lib/link';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 class Nav extends React.Component{
-    render() {
+
+      render() {
       return (
           <div>
             <NavDrawer active='true'
@@ -17,10 +18,10 @@ class Nav extends React.Component{
                <Navigation type='vertical'>
                    <List selectable ripple>
                        <ListSubHeader caption='Students' /><MenuDivider />
-      <MenuItem value='download' icon='get_app' caption='Download' />
+      <ListItem ><Link href="#/Profile" label="Profile" icon ="person"/></ListItem>
       <MenuItem value='help' icon='favorite' caption='Favorite' />
       <MenuItem value='settings' icon='open_in_browser' caption='Open in app' />
-     
+
       <ListSubHeader caption='Finance' /><MenuDivider />
       <MenuItem value='download' icon='get_app' caption='Download' />
       <MenuItem value='help' icon='favorite' caption='Favorite' />

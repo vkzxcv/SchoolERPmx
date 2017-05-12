@@ -3,12 +3,11 @@ import { Table, TableHead, TableRow, TableCell } from 'react-toolbox/lib/table';
 import Input from 'react-toolbox/lib/input';
 import PouchDB from 'pouchdb-browser' ;
 import {Button} from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-var db = new PouchDB('dbname');
+var student_database_one = new PouchDB('student_database_one');
 const data=[];
-db.allDocs({"include_docs": true,"ascending": true}).then(function(docs){
+student_database_one.allDocs({"include_docs": true,"ascending": true}).then(function(docs){
   docs.rows.forEach(function(entry){
-   // console.log(entry.doc);
+    console.log(entry.doc);
     data.push(entry.doc);
   });});
 const u=[];
@@ -34,7 +33,7 @@ class TableTest extends Component {
     name:''
   };
 
-  getSortedData = () => { 
+  getSortedData = () => {
     const compare = this.state.sorted === 'asc' ? sortByIdAsc : sortByIdDesc;
     return data.sort(compare);
   };
@@ -76,7 +75,6 @@ class TableTest extends Component {
 
     return (
       <div style={{ flex: 1, overflowX: 'auto', margin: '5% 10% 10% 20%' }}>
-        <Card>
       <Input type='text' label='Name' name='name' icon='person' value={this.state.name} onChange={this.handleChange.bind(this, 'name')} />
       <Button label='Search' raised primary onClick={this.handleClick}/>
       <Table multiSelectable onRowSelect={this.handleRowSelect} style={{ marginTop: 10 }}>
@@ -94,7 +92,7 @@ class TableTest extends Component {
             <TableCell >{item.phone}</TableCell>
             </TableRow>
         ))}
-      </Table></Card></div>
+      </Table></div>
     );
   }
 }

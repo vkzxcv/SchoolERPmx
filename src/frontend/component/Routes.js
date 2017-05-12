@@ -4,28 +4,26 @@ import App from './App';
 import Inputform from './Inputform';
 import React from 'react';
 import Table from './Table';
-import Student from './student.js';
-import Studentedit from './Studentedit';
-import attendance from './attendance';
-import feeasssign from './feeassign';
-import Feepay from './feepay';
-import addsub from './addsubject';
-import Login from './login';
-import addexam from './addexam';
+import Profile from './student_module/profile';
+import Attendance from './student_module/attendance';
+import Addexam from './Acads_module/Addexam';
+import Addsubject from './Acads_module/Addsubject';
+import Feeassign from './finance_module/Feeassign';
+import Feepay from './finance_module/Feepay';
+import Login from './Login'
 const routes = (
   <Router history={hashHistory}>
     <Route path='/' component={App}>
     <Route path='/Inputform' component={Inputform}/>
     <Route path='/Table' component={Table}/>
-    <Route path='/Student' component={Student} />
-    <Route path='/Student/edit' component={Studentedit} />
-    <Route path='/attendance' component={attendance} />
-    <Route path='/fee/assign' component={feeasssign} />
-    <Route path='/fee/pay' component={Feepay} />
-    <Route path='/login' component={Login} />
-    <Route path='/addsubject' component={addsub} />
-    <Route path='/addexam' component={addexam} />
+    <Route path='/Profile' component={Profile}/>
+    <Route path='/Attendance' component={Attendance}/>
+    <Route path='/Addexam' component={Addexam}/>
+    <Route path='/Addsubject' component={Addsubject}/>
+    <Route path='/Feeassign' component={Feeassign}/>
+    <Route path='/Feepay' component={Feepay}/>
+    <Route path='/Login' component={Login}/>
   </Route>
 </Router>
 )
-export default routes;
+export default routes
